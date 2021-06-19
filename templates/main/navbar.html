@@ -1,0 +1,61 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+  a{
+    font-size: large;
+    padding-right: 3em;
+  }
+  .navbar-brand{
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <div class="navbar-header border border-warning">
+    <a class="navbar-brand text-white" href="{% url 'main:home'%}">MySite</a>
+  </div>
+  <div class="col-sm-4 text-center justify-content-center border border-info">
+    <span class="text-white h5 mr-auto">Hello, {{ user.username|default:'Guest' }}! </span>
+  </div>
+
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    
+  
+  <div class="collapse navbar-collapse mr-5" id="navbarTogglerDemo02">
+    
+    <ul class="navbar-nav mt-2 mt-lg-0 ml-auto ">
+      <li class="nav-item active px-3">
+        <a class="nav-link text-white" href="{% url 'main:home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>  
+    
+    {% if user.is_authenticated %}
+    <!-- <ul class="navbar-nav mt-2 mt-lg-0 ml-auto "> -->
+      <li class="nav-item px-3">
+        <a class="nav-link text-white" href="{% url 'main:create' %}">Create</a>
+      </li>
+      
+      <li class="nav-item px-3 ">              
+        <a class="nav-link text-white" href="{% url 'main:mylist'%}">Lists</a>
+      </li>
+      <li class="nav-item active px-3">
+        <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+      </li>
+      <li class="nav-item active px-3">
+          <a class="nav-link text-white" href="#">Profile</a>
+      </li>
+      {% else %}
+      <li class="nav-item active px-3">
+        <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+      </li>
+      {% endif %}
+    </ul> 
+     
+  </div>
+  
+</nav>

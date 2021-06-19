@@ -1,0 +1,22 @@
+{% extends 'main/home.html' %}
+
+{% block content %}
+
+<div class="border border-success">
+    <h5 class=" text-center">{{list.name}}</h5> 
+    <ul class="list-group list-group-flush"></ul>
+    {% for item in list.item_set.all %}
+        {% if item.complete == True %}                      
+            <li class="list-group-item"><input type="checkbox" value="clicked" checked>{{item.text}}</li><br>
+        {% else %}
+            <li class="list-group-item"><input type="checkbox" name="c{{item.id}}" value="clicked">{{item.text}}</li><br>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+    <div class="form-group mb-3 px-5">                            
+        <a type="submit"  class="btn btn-lg btn-info btn-block" href="{% url 'main:update' list.id %}">Update</a>                                
+    </div>
+
+
+{% endblock %}
